@@ -18,11 +18,10 @@ jobs:
       # Single platform build for AMD64 only
       platforms: linux/amd64
       
-      # Push to Docker Hub and GHCR
-      dockerhub-enable: true
+      # Push to GHCR only
+      dockerhub-enable: false
       ghcr-enable: true
       image-names: |
-        docker.io/deroino/ultroid
         ghcr.io/deroino/ultroid
       
       # Enable email notifications
