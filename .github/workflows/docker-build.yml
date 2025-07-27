@@ -23,8 +23,8 @@ jobs:
       dockerhub-enable: true
       ghcr-enable: true
       image-names: |
-        docker.io/yourusername/ultroid
-        ghcr.io/yourusername/ultroid
+        docker.io/deroino/ultroid
+        ghcr.io/deroino/ultroid
       
       # Enable email notifications
       email-enable: true
