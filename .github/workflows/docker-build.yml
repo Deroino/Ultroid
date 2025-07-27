@@ -15,8 +15,8 @@ jobs:
       packages: write
       pull-requests: write
     with:
-      # Multi-platform build for ARM64 and AMD64
-      platforms: linux/amd64,linux/arm64
+      # Single platform build for AMD64 only
+      platforms: linux/amd64
       
       
       # Push to Docker Hub and GHCR
