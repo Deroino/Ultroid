@@ -18,7 +18,6 @@ jobs:
       # Single platform build for AMD64 only
       platforms: linux/amd64
       
-      
       # Push to Docker Hub and GHCR
       dockerhub-enable: true
       ghcr-enable: true
@@ -28,13 +27,13 @@ jobs:
       
       # Enable email notifications
       email-enable: true
-      email-to: your-email@example.com
+      email-to: wangchenghow@foxmail.com
       email-server: smtp.qq.com
       email-port: 465
       
       # Enable push notifications
       push-notify-enable: true
-      push-notify-url: https://reminderapi.joyslinktech.com/v1/push/key/YOUR_KEY_HERE
+      push-notify-url: https://reminderapi.joyslinktech.com/v1/push/key/PSH1747376891203bCK3tG1pKvx5yAHo
       
     secrets:
       # Docker Hub credentials
