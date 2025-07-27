@@ -1,0 +1,46 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker-build:
+    uses: Deroino/docker-build-workflow/.github/workflows/reusable-docker-build.yaml@main
+    permissions:
+      contents: read
+      packages: write
+      pull-requests: write
+    with:
+      # Multi-platform build for ARM64 and AMD64
+      platforms: linux/amd64,linux/arm64
+      
+      
+      # Push to Docker Hub and GHCR
+      dockerhub-enable: true
+      ghcr-enable: true
+      image-names: |
+        docker.io/yourusername/ultroid
+        ghcr.io/yourusername/ultroid
+      
+      # Enable email notifications
+      email-enable: true
+      email-to: your-email@example.com
+      email-server: smtp.qq.com
+      email-port: 465
+      
+      # Enable push notifications
+      push-notify-enable: true
+      push-notify-url: https://reminderapi.joyslinktech.com/v1/push/key/YOUR_KEY_HERE
+      
+    secrets:
+      # Docker Hub credentials
+      dockerhub-username: ${{ secrets.DOCKER_USERNAME }}
+      dockerhub-token: ${{ secrets.DOCKER_PASSWORD }}
+      
+      # Email credentials
+      email-username: ${{ secrets.EMAIL_USERNAME }}
+      email-password: ${{ secrets.EMAIL_PASSWORD }}

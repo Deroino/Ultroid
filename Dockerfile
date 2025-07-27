@@ -5,16 +5,33 @@
 
 FROM theteamultroid/ultroid:main
 
-# set timezone
+# Set timezone
 ENV TZ=Asia/Kolkata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY installer.sh .
+# Set working directory
+WORKDIR /root/TeamUltroid
 
-RUN bash installer.sh
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    ffmpeg \
+    mediainfo \
+    neofetch \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# changing workdir
-WORKDIR "/root/TeamUltroid"
+# Clone Ultroid repository
+RUN git clone https://github.com/TeamUltroid/Ultroid.git . \
+    && pip3 install --upgrade pip \
+    && pip3 install --no-cache-dir -r requirements.txt \
+    && pip3 install -r resources/startup/optional-requirements.txt
 
-# start the bot.
+# Copy startup script
+COPY startup /root/TeamUltroid/startup
+RUN chmod +x /root/TeamUltroid/startup
+
+# Start the bot
 CMD ["bash", "startup"]
